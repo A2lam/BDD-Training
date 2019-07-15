@@ -31,7 +31,7 @@ public class BookingSteps
     }
 
     @Then("^(\\d+) tickets are booked for me$")
-    public void twoTicketsAreBookedForMe()
+    public void someTicketsAreBookedForMe()
     {
         assertTrue(this.is_successful);
     }
