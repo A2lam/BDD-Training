@@ -5,7 +5,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class BookingSteps
 {
@@ -34,5 +34,17 @@ public class BookingSteps
     public void twoTicketsAreBookedForMe()
     {
         assertTrue(this.is_successful);
+    }
+
+    @And("^they are not available$")
+    public void theyAreNotAvailable()
+    {
+        this.booking.companyAvailableSeats = 1;
+    }
+
+    @Then("^No tickets are booked$")
+    public void noTicketsAreBooked()
+    {
+        assertFalse(this.is_successful);
     }
 }
