@@ -12,7 +12,7 @@ public class BookingSteps
     private Booking booking;
     private boolean is_successful;
 
-    @Given("^I want (\\d+) tickets to (.*) with (.*)$")
+    @Given("^I want (\\d+) ticket\\(s\\) to (.*) with (.*)$")
     public void iWantSomeTicketsToDestinationWithCompany()
     {
         this.booking = new Booking(2, "New York", "Air France");
@@ -30,7 +30,7 @@ public class BookingSteps
         this.is_successful = this.booking.order();
     }
 
-    @Then("^(\\d+) tickets are booked for me$")
+    @Then("^(\\d+) ticket\\(s\\) are booked for me$")
     public void someTicketsAreBookedForMe()
     {
         assertTrue(this.is_successful);
@@ -46,5 +46,11 @@ public class BookingSteps
     public void noTicketsAreBooked()
     {
         assertFalse(this.is_successful);
+    }
+
+    @Given("^I want (\\d+) ticket\\(s\\) to (.*) with (.*) whose (.*)$")
+    public void iWantSomeTicketsToDestinationWithCompanyWhose()
+    {
+        this.booking = new Booking(2, "New York", "Air France");
     }
 }
