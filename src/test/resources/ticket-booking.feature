@@ -4,11 +4,15 @@ Feature: Book a airline ticket
 
   I would want to book airline ticket for me to go on vacation
 
-  Scenario: Book two tickets successfully
-    Given I want 2 ticket(s) to New York with AirFrance
-    And 100 available(s)
+  Scenario Outline: Book two tickets successfully
+    Given I want <nbTickets> ticket(s) to <destination> with <company>
+    And <nbPlacesAvions> available(s)
     When I try to book airline tickets
-    Then 2 ticket(s) are booked for me
+    Then <nbTickets> ticket(s) are booked for me
+    Examples:
+      |nbTickets|destination|company  |nbPlacesAvions|
+      |2        |New York   |AirFrance|100           |
+      |4        |New York   |AirFrance|4             |
 
   Scenario: Book two tickets unsuccessfully
     Given I want 2 ticket(s) to New York with AirFrance
@@ -29,3 +33,5 @@ Feature: Book a airline ticket
     And 100 available(s)
     When I try to book airline tickets
     Then 1 ticket(s) are booked for me
+
+
