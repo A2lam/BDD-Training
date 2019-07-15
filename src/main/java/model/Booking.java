@@ -5,10 +5,11 @@ import java.lang.reflect.Array;
 class Booking
 {
     private int numberOfSeats;
+    private int numberOfPortholeSeats;
     private String destination;
     private String companyName;
     int companyAvailableSeats;
-    String[] options;
+    int companyAvailablePortholeSeats;
 
     Booking() {}
 
@@ -17,18 +18,20 @@ class Booking
         this.numberOfSeats = numberOfSeats;
         this.destination = destination;
         this.companyName = companyName;
+        this.numberOfPortholeSeats = 0;
+        this.companyAvailablePortholeSeats = 0;
     }
 
-    Booking(int numberOfSeats, String destination, String companyName, String options[])
+    Booking(int numberOfSeats, int numberOfPortholeSeats, String destination, String companyName)
     {
         this.numberOfSeats = numberOfSeats;
+        this.numberOfPortholeSeats = numberOfPortholeSeats;
         this.destination = destination;
         this.companyName = companyName;
-        this.options = options;
     }
 
     boolean order()
     {
-        return this.numberOfSeats <= this.companyAvailableSeats;
+        return this.numberOfSeats <= this.companyAvailableSeats && this.numberOfPortholeSeats <= this.companyAvailablePortholeSeats;
     }
 }

@@ -1,5 +1,6 @@
 package model;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -13,15 +14,15 @@ public class BookingSteps
     private boolean is_successful;
 
     @Given("^I want (\\d+) ticket\\(s\\) to (.*) with (.*)$")
-    public void iWantSomeTicketsToDestinationWithCompany()
+    public void iWantSomeTicketsToDestinationWithCompany(int numberOfSeats, String destination, String company)
     {
-        this.booking = new Booking(2, "New York", "Air France");
+        this.booking = new Booking(numberOfSeats, destination, company);
     }
 
-    @And("^they are available$")
-    public void theyAreAvailable()
+    @And("^(\\d+) available\\(s\\)$")
+    public void theyAreAvailable(int companyAvailableSeats)
     {
-        this.booking.companyAvailableSeats = 100;
+        this.booking.companyAvailableSeats = companyAvailableSeats;
     }
 
     @When("^I try to book airline tickets$")
@@ -31,15 +32,9 @@ public class BookingSteps
     }
 
     @Then("^(\\d+) ticket\\(s\\) are booked for me$")
-    public void someTicketsAreBookedForMe()
+    public void someTicketsAreBookedForMe(int numberOfBookedSeats)
     {
         assertTrue(this.is_successful);
-    }
-
-    @And("^they are not available$")
-    public void theyAreNotAvailable()
-    {
-        this.booking.companyAvailableSeats = 1;
     }
 
     @Then("^No tickets are booked$")
@@ -48,9 +43,21 @@ public class BookingSteps
         assertFalse(this.is_successful);
     }
 
-    @Given("^I want (\\d+) ticket\\(s\\) to (.*) with (.*) whose (.*)$")
-    public void iWantSomeTicketsToDestinationWithCompanyWhose()
+    @Given("^I want (\\d+) porthole ticket\\(s\\) and (\\d+) normal ticket\\(s\\) to (.*) with (.*)$")
+    public void iWantSomePortholeTicketsAndSomeNormalTicketsToDestinationWithCompany(int numberOfPortholeSeats, int numberOfSeats, String destination, String company)
     {
-        this.booking = new Booking(2, "New York", "Air France");
+        this.booking = new Booking(numberOfSeats, numberOfPortholeSeats, destination, company);
+    }
+
+    @And("^(\\d+) porthole are available$")
+    public void somePortholeAreAvailable(int companyAvailablePortholeSeats)
+    {
+        this.booking.companyAvailablePortholeSeats = companyAvailablePortholeSeats;
+    }
+
+    @Then("^(\\d+) ticket\\(s\\) whose (\\d+) porthole\\(s\\) booked for me$")
+    public void someTicketsWhoseSomeIsPortholeAreBookedForMe(int numberOfBookedSeats, int numberOfPortholeBookedSeats)
+    {
+        assertTrue(this.is_successful);
     }
 }
