@@ -1,6 +1,5 @@
 package model;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -59,5 +58,11 @@ public class BookingSteps
     public void someTicketsWhoseSomeIsPortholeAreBookedForMe(int numberOfBookedSeats, int numberOfPortholeBookedSeats)
     {
         assertTrue(this.is_successful);
+    }
+
+    @And("^the airline company does accept it$")
+    public void theAirlineCompanyDoesAcceptIt()
+    {
+        this.booking.acceptPet = true;
     }
 }

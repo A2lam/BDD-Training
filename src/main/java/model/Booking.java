@@ -10,6 +10,7 @@ class Booking
     private String companyName;
     int companyAvailableSeats;
     int companyAvailablePortholeSeats;
+    boolean acceptPet;
 
     Booking() {}
 
@@ -20,6 +21,7 @@ class Booking
         this.companyName = companyName;
         this.numberOfPortholeSeats = 0;
         this.companyAvailablePortholeSeats = 0;
+        this.acceptPet = true;
     }
 
     Booking(int numberOfSeats, int numberOfPortholeSeats, String destination, String companyName)
@@ -28,10 +30,11 @@ class Booking
         this.numberOfPortholeSeats = numberOfPortholeSeats;
         this.destination = destination;
         this.companyName = companyName;
+        this.acceptPet = true;
     }
 
     boolean order()
     {
-        return this.numberOfSeats <= this.companyAvailableSeats && this.numberOfPortholeSeats <= this.companyAvailablePortholeSeats;
+        return this.numberOfSeats <= this.companyAvailableSeats && this.numberOfPortholeSeats <= this.companyAvailablePortholeSeats && this.acceptPet;
     }
 }

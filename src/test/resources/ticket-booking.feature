@@ -24,7 +24,8 @@ Feature: Book a airline ticket
     Then 2 ticket(s) whose 1 porthole(s) booked for me
 
   Scenario: Book a ticket with the ability to bring my pet successfully
-    Given I want 1 ticket(s) to New York with AirFrance whose accept pet
+    Given I want 1 ticket(s) to New York with AirFrance that consider pets
     And the airline company does accept it
-    When I try to book airline ticket
-    Then A special ticket that enables pet is booked for me
+    And 100 available(s)
+    When I try to book airline tickets
+    Then 1 ticket(s) are booked for me
