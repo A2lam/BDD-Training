@@ -12,8 +12,8 @@ public class BookingSteps
     private Booking booking;
     private boolean is_successful;
 
-    @Given("^I want two tickets to New York with AirFrance$")
-    public void iWantTwoTicketsToNewYorkWithAirFrance()
+    @Given("^I want (\\d+) tickets to (.*) with (.*)$")
+    public void iWantSomeTicketsToDestinationWithCompany()
     {
         this.booking = new Booking(2, "New York", "Air France");
     }
@@ -30,7 +30,7 @@ public class BookingSteps
         this.is_successful = this.booking.order();
     }
 
-    @Then("^two tickets are booked for me$")
+    @Then("^(\\d+) tickets are booked for me$")
     public void twoTicketsAreBookedForMe()
     {
         assertTrue(this.is_successful);
